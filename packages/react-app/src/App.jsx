@@ -59,7 +59,7 @@ const { ethers } = require("ethers");
 */
 
 /// 📡 What chain are your contracts deployed to?
-const initialNetwork = NETWORKS.localhost; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+const initialNetwork = NETWORKS.goerli; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
 // 😬 Sorry for all the console logging
 const DEBUG = true;
@@ -266,6 +266,10 @@ function App(props) {
   // // console.log("➕ LiquidityProvidedEvents:", LiquidityProvidedEvents);
   // const LiquidityRemovedEvents = useEventListener(readContracts, "DEX", "LiquidityRemoved", 1);
   // // console.log("➖ LiquidityRemovedEvents:", LiquidityRemovedEvents);
+  const StarProviderEvents = useEventListener(readContracts, "DEX", "StarProvider", localProvider, 1);
+  
+  // console.log("We have a new star ", StarProviderEvents);
+  // 
 
   return (
     <div className="App">
@@ -375,8 +379,26 @@ function App(props) {
             mainnetProvider={mainnetProvider}
             startBlock={1}
           />
+          <Events
+            contracts={readContracts}
+            contractName="Balloons"
+            eventName="Approval"
+            localProvider={localProvider}
+            mainnetProvider={mainnetProvider}
+            startBlock={1}
+          />
+          <Events
+            contracts={readContracts}
+            contractName="DEX"
+            eventName="StarProvider"
+            localProvider={localProvider}
+            mainnetProvider={mainnetProvider}
+            startBlock={1}
+          />
+
+
         </Route>
-        }
+        
         <Route exact path="/debug">
           {/*
                 🎛 this scaffolding is full of commonly used components

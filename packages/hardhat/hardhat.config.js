@@ -27,7 +27,7 @@ const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 //
 // Select the network you want to deploy to here:
 //
-const defaultNetwork = "localhost";
+const defaultNetwork = "goerli";
 
 const mainnetGwei = 21;
 
@@ -90,10 +90,10 @@ module.exports = {
     //   url: `https://ropsten.infura.io/v3/${process.env.ROPSTEN_INFURA_KEY}`,
     //   accounts: [`${process.env.ROPSTEN_DEPLOYER_PRIV_KEY}`],
     // },
-    // goerli: {
-    //   url: `https://goerli.infura.io/v3/${process.env.GOERLI_INFURA_KEY}`,
-    //   accounts: [`${process.env.GOERLI_DEPLOYER_PRIV_KEY}`],
-    // },
+    goerli: {
+      url: `https://goerli.infura.io/v3/${process.env.GOERLI_INFURA_KEY}`,
+      accounts: [`${process.env.GOERLI_DEPLOYER_PRIV_KEY}`],
+    },
     // xdai: {
     //   url: 'https://dai.poa.network',
     //   gasPrice: 1000000000,
@@ -101,7 +101,7 @@ module.exports = {
     // },
 
     rinkeby: {
-      url: "https://rinkeby.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad", // <---- YOUR INFURA ID! (or it won't work)
+      url: "https://rinkeby.infura.io/v3/b140e22361b548608b1db7b2d1e67d68", // <---- YOUR INFURA ID! (or it won't work)
 
       //    url: "https://speedy-nodes-nyc.moralis.io/XXXXXXXXXXXXXXXXXXXXXXX/eth/rinkeby", // <---- YOUR MORALIS ID! (not limited to infura)
 
@@ -110,7 +110,7 @@ module.exports = {
       },
     },
     kovan: {
-      url: "https://kovan.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad", // <---- YOUR INFURA ID! (or it won't work)
+      url: "https://kovan.infura.io/v3/b140e22361b548608b1db7b2d1e67d68", // <---- YOUR INFURA ID! (or it won't work)
 
       //    url: "https://speedy-nodes-nyc.moralis.io/XXXXXXXXXXXXXXXXXXXXXXX/eth/kovan", // <---- YOUR MORALIS ID! (not limited to infura)
 
@@ -119,7 +119,7 @@ module.exports = {
       },
     },
     mainnet: {
-      url: "https://mainnet.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad", // <---- YOUR INFURA ID! (or it won't work)
+      url: "https://mainnet.infura.io/v3/b140e22361b548608b1db7b2d1e67d68", // <---- YOUR INFURA ID! (or it won't work)
 
       //      url: "https://speedy-nodes-nyc.moralis.io/XXXXXXXXXXXXXXXXXXXXXXXXX/eth/mainnet", // <---- YOUR MORALIS ID! (not limited to infura)
 
@@ -129,7 +129,7 @@ module.exports = {
       },
     },
     ropsten: {
-      url: "https://ropsten.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad", // <---- YOUR INFURA ID! (or it won't work)
+      url: "https://ropsten.infura.io/v3/b140e22361b548608b1db7b2d1e67d68", // <---- YOUR INFURA ID! (or it won't work)
 
       //      url: "https://speedy-nodes-nyc.moralis.io/XXXXXXXXXXXXXXXXXXXXXXXXX/eth/ropsten",// <---- YOUR MORALIS ID! (not limited to infura)
 
@@ -138,7 +138,7 @@ module.exports = {
       },
     },
     goerli: {
-      url: "https://goerli.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad", // <---- YOUR INFURA ID! (or it won't work)
+      url: "https://goerli.infura.io/v3/b140e22361b548608b1db7b2d1e67d68", // <---- YOUR INFURA ID! (or it won't work)
 
       //      url: "https://speedy-nodes-nyc.moralis.io/XXXXXXXXXXXXXXXXXXXXXXXXX/eth/goerli", // <---- YOUR MORALIS ID! (not limited to infura)
 
@@ -327,7 +327,7 @@ module.exports = {
     },
   },
   etherscan: {
-    apiKey: "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW",
+    apiKey: "PARW4A1D4HI9SDWR3WXDC43YXFJ1M1PM3V",
   },
 };
 

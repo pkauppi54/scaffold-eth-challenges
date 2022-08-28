@@ -21,7 +21,7 @@ const DisplayVariable = ({ contractFunction, functionInfo, refreshRequired, trig
 
   return (
     <div>
-      <Row>
+      <Row >
         <Col
           span={8}
           style={{

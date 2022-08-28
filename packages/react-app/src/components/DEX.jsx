@@ -18,6 +18,8 @@ export default function Dex(props) {
 
   const [form, setForm] = useState({});
   const [values, setValues] = useState({});
+  const [cardColor, setCardColor]= useState("rgb(128, 190, 134)") // This defaults to light green
+  
   const tx = props.tx;
 
   const writeContracts = props.writeContracts;
@@ -33,8 +35,8 @@ export default function Dex(props) {
 
   const rowForm = (title, icon, onClick) => {
     return (
-      <Row>
-        <Col span={8} style={{ textAlign: "right", opacity: 0.333, paddingRight: 6, fontSize: 24 }}>
+      <Row >
+        <Col span={8} style={{ textAlign: "right", opacity: 0.333, paddingRight: 6, fontSize: 24}}>
           {title}
         </Col>
         <Col span={16}>
@@ -111,6 +113,8 @@ export default function Dex(props) {
 
         {rowForm("deposit", "📥", async value => {
           let valueInEther = ethers.utils.parseEther("" + value);
+          // liquidity for the comparison so we can see if this is a star provider (<50% of previous liquidity)
+          let liquidity = await props.readContracts["DEX"].getTotalLiquidity();
           let allowance = await props.readContracts[tokenName].allowance(
             props.address,
             props.readContracts[contractName].address,
@@ -123,8 +127,26 @@ export default function Dex(props) {
               }),
             );
           }
+          let randomNum1 = Math.floor(Math.random() * (255 - 0 + 1)) + 0 // random number between 0 and 255 (including both)
+            let randomNum2 = Math.floor(Math.random() * (255 - 0 + 1)) + 0 // random number between 0 and 255 (including both)
+            let randomNum3 = Math.floor(Math.random() * (255 - 0 + 1)) + 0 // random number between 0 and 255 (including both)
+            setCardColor(`rgb(${randomNum1}, ${randomNum2}, ${randomNum3})`)
+
+          // if (valueInEther > liquidity / 2) {
+          //   console.log("YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
+          //   for (let i=0; i<5; i++) {
+          //     let randomNum1 = Math.floor(Math.random() * (255 - 0 + 1)) + 0 // random number between 0 and 255 (including both)
+          //     let randomNum2 = Math.floor(Math.random() * (255 - 0 + 1)) + 0 // random number between 0 and 255 (including both)
+          //     let randomNum3 = Math.floor(Math.random() * (255 - 0 + 1)) + 0 // random number between 0 and 255 (including both)
+          //     setCardColor(`rgb(${randomNum1}, ${randomNum2}, ${randomNum3})`)
+              
+          //     console.log("round" + i)
+          //   }
+          //   // setCardColor("#fff")
+          // }
           await tx(writeContracts[contractName]["deposit"]({ value: valueInEther, gasLimit: 200000 }));
-        })}
+        })
+        }
 
         {rowForm("withdraw", "📤", async value => {
           let valueInEther = ethers.utils.parseEther("" + value);
@@ -134,11 +156,20 @@ export default function Dex(props) {
       </div>,
     );
   }
+  // const stars = useEventListener(props.readContracts,  props.contractName,  "StarProvider", props.localProvider, 1);
+  // if (stars.type === Event) {
+  //   display.push(
+  //     <h2>
+  //       Hello I am a visitor
+  //     </h2>
+  //   )
+  // }
 
   return (
-    <Row span={24}>
+    <Row span={24} >
       <Col span={12}>
         <Card
+          style={{backgroundColor: cardColor}}
           title={
             <div>
               <Address value={contractAddress} />
@@ -165,8 +196,8 @@ export default function Dex(props) {
           />
         </Row>
       </Col>
-      <Col span={12}>
-        <div style={{ padding: 20 }}>
+      <Col span={12} style={{backgroundColor: cardColor}} >
+        <div style={{ padding: 20}}>
           <Curve
             addingEth={values && values["ethToToken"] ? values["ethToToken"] : 0}
             addingToken={values && values["tokenToEth"] ? values["tokenToEth"] : 0}
